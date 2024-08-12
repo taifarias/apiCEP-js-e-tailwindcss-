@@ -8,6 +8,7 @@ const inputEstado = document.getElementById('inputEstado');
 const buttonComplete = document.getElementById('buttonComplete');
 
 
+
 inputCEP.addEventListener('keypress', (e) => {
     
     const onlyNumbers = /[0-9]/;
@@ -43,7 +44,8 @@ const getAdress = async (cep) => {
 
 
     if(data.erro === "true") {
-       
+        inputCEP.value = "";
+
         alert("CEP invalido")
 
 
@@ -55,13 +57,31 @@ const getAdress = async (cep) => {
     inputCidade.value = data.localidade;   
     inputEstado.value = data.uf
 
+    toggleDisabled();
 
 }
 
 
 buttonComplete.addEventListener("click", (e) => {
-    if(inputRua != " ") {
-        alert('Endereço cadastrado com sucesso!')       
+    if(inputRua === "") {
+        alert('Endereço cadastrado com sucesso!');
+
+        inputCEP.value = "";
+
     }
     
 })
+
+const toggleDisabled = () => {
+    if(inputRua !== "") {
+       inputRua.toggleAttribute('disabled');
+       inputNum.toggleAttribute('disabled');
+       inputCompl.toggleAttribute('disabled');
+       inputBairro.toggleAttribute('disabled');
+       inputCidade.toggleAttribute('disabled');
+       inputEstado.toggleAttribute('disabled');
+
+        
+    }
+}
+
