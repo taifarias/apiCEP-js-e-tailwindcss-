@@ -88,7 +88,7 @@ inputCEP.addEventListener('keyup', (e) => {
 
 buttonComplete.addEventListener("click", (e) => {
 
-    if(inputNum.value.trim() === "") {
+    if(inputNum.value.trim() === "" || inputCompl.value.trim() === "") {
         alert('Endereço não preenchido!');
         return;
     }
